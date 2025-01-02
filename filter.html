@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .filter-controls {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* New Filter Bar Styling */
+        .filter-bar {
+            display: inline-flex;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            gap: 15px;
+        }
+
+        .filter-controls input[type="radio"] {
+            display: none;
+        }
+
+        .filter-controls label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 15px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s ease;
+            color: white;
+        }
+
+        .filter-controls label:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .filter-controls label i {
+            font-size: 16px;
+        }
+
+        input[type="radio"]:checked+label {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .divider {
+            width: 1px;
+            height: 24px;
+            background-color: white;
+            opacity: 0.5;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .art-item {
+            display: none;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .art-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .art-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .art-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .art-item:hover .art-caption {
+            opacity: 1;
+        }
+
+        /* Filter Logic */
+        #all:checked~.gallery .art-item {
+            display: block;
+        }
+
+        #classical:checked~.gallery .classical {
+            display: block;
+        }
+
+        #modern:checked~.gallery .modern {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .divider {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="portfolio-container">
+        <div class="filter-controls">
+            <div class="filter-bar">
+                <input type="radio" id="all" name="filter" checked>
+                <label for="all">
+                    <i class="fas fa-images"></i>
+                    <span>All Artwork</span>
+                </label>
+
+                <div class="divider"></div>
+
+                <input type="radio" id="classical" name="filter">
+                <label for="classical">
+                    <i class="fas fa-landmark"></i>
+                    <span>Classical</span>
+                </label>
+
+                <div class="divider"></div>
+
+                <input type="radio" id="modern" name="filter">
+                <label for="modern">
+                    <i class="fas fa-paint-brush"></i>
+                    <span>Modern</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <!-- Classical Art Examples -->
+            <div class="art-item classical">
+                <img src="/api/placeholder/300/300" alt="Classical Artwork 1">
+                <div class="art-caption">
+                    <h3>The Birth of Venus</h3>
+                    <p>Sandro Botticelli, 1485</p>
+                </div>
+            </div>
+            <div class="art-item classical">
+                <img src="/api/placeholder/300/300" alt="Classical Artwork 2">
+                <div class="art-caption">
+                    <h3>The Starry Night</h3>
+                    <p>Vincent van Gogh, 1889</p>
+                </div>
+            </div>
+
+            <!-- Modern Art Examples -->
+            <div class="art-item modern">
+                <img src="/api/placeholder/300/300" alt="Modern Artwork 1">
+                <div class="art-caption">
+                    <h3>Abstract Composition</h3>
+                    <p>Contemporary Artist, 2023</p>
+                </div>
+            </div>
+            <div class="art-item modern">
+                <img src="/api/placeholder/300/300" alt="Modern Artwork 2">
+                <div class="art-caption">
+                    <h3>Digital Landscape</h3>
+                    <p>Digital Artist, 2024</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
