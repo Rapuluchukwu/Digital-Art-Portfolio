@@ -1,10 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Contact widget functionality
-    const contactIcon = document.getElementById("contact-icon");
-    const contactOptions = document.getElementById("contact-options");
-})
-// Toggle the dropdown menu when the contact icon is clicked
-contactIcon.addEventListener("click", (e) => {
-    e.stopPropagation(); // Prevent the click from bubbling up
-    contactOptions.classList.toggle("show");
+// Get elements
+const contactIcon = document.getElementById('contactIcon');
+const dropdownMenu = document.getElementById('dropdownMenu');
+
+// Toggle the dropdown menu on click
+contactIcon.addEventListener('click', () => {
+  dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
 });
+
+// Close the dropdown menu if clicked outside
+document.addEventListener('click', (event) => {
+  if (!contactIcon.contains(event.target) && !dropdownMenu.contains(event.target)) {
+    dropdownMenu.style.display = 'none';
+  }
+}); 
